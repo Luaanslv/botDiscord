@@ -30,17 +30,7 @@ client.on("message", async message => {
     if (comando === "ping") {
         const m = await message.channel.send("Ping?");
         m.edit(`Pong! A latência é ${m.createdTimestamp - message.createdTimestamp}ms. A Latência da API é ${Math.round(client.ws.ping)}ms`);
-        return;
     }
-});
-
-client.on("message", async message => {
-    if (message.author.bot) return;
-    if (message.channel.type === "dm") return;
-
-    const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
-    const comando = args.shift().toLocaleLowerCase();
-    
     if (comando == "clear") {
         const clear = parseInt(args[0], 10)
         if (!clear || clear <1 || clear > 100)
@@ -51,7 +41,7 @@ client.on("message", async message => {
                 .bulkDelete(fetched)
         message.channel.send(`${args[0]} menssagens limpas nesse chat`);   
     }
-})
+});
 
 
 
